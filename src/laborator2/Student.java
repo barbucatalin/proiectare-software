@@ -37,7 +37,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student: " + nume + " " + prenume +
-                " | Nr. Matricol: " + numarMatricol +
-                " | Grupa: " + formatieDeStudiu;
+                "  Nr. Matricol: " + numarMatricol +
+                "  Grupa: " + formatieDeStudiu;
     }
 }
