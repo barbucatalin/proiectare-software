@@ -2,7 +2,8 @@ package laborator2;
 
 import java.util.Objects;
 
-public class Student {
+
+public class Student implements Comparable<Student> {
 
     private String numarMatricol;
     private String prenume;
@@ -17,6 +18,22 @@ public class Student {
     }
 
 
+    public String getNume() { return nume; }
+    public String getFormatieDeStudiu() { return formatieDeStudiu; }
+
+    @Override
+    public int compareTo(Student altStudent) {
+
+        int rezultatFormatie = this.formatieDeStudiu.compareTo(altStudent.formatieDeStudiu);
+
+
+        if (rezultatFormatie == 0) {
+            return this.nume.compareTo(altStudent.nume);
+        }
+
+        return rezultatFormatie;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,7 +45,6 @@ public class Student {
                 Objects.equals(formatieDeStudiu, student.formatieDeStudiu);
     }
 
-
     @Override
     public int hashCode() {
         return Objects.hash(numarMatricol, prenume, nume, formatieDeStudiu);
@@ -36,8 +52,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student: " + nume + " " + prenume +
-                "  Nr. Matricol: " + numarMatricol +
-                "  Grupa: " + formatieDeStudiu;
+
+        return numarMatricol + ", " + prenume + ", " + nume + ", " + formatieDeStudiu;
     }
 }

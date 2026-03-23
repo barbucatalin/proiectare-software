@@ -1,46 +1,61 @@
 package laborator3;
 
+import laborator2.Student; // Importăm clasa Student din pachetul laborator2
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class IO {
     public static void main(String[] args) {
 
-        String fileNameIn = "src/laborator3/in.txt";
-        String fileNameOut = "src/laborator3/out.txt";
+        String fileNameIn = "src/laborator3/studenti_in.txt";
+        String fileNameOut = "src/laborator3/studenti_out_sorted.txt";
 
         try {
+
             Path pathIn = Paths.get(fileNameIn);
+            List<String> rawLines = Files.readAllLines(pathIn);
 
-            List<String> lines = Files.readAllLines(pathIn);
-            List<String> processedLines = new ArrayList<>();
-
-
-
-            for (String line : lines) {
-
-                String modifiedLine = line + "\n";
+            List<Student> listaStudenti = new ArrayList<>();
 
 
-                modifiedLine = modifiedLine.replace(".", ".\n");
+            for (String line : rawLines) {
+                if (line.trim().isEmpty()) continue;
 
 
-                System.out.print(modifiedLine);
+                String[] date = line.split(",\\s*");
+                if (date.length == 4) {
+                    Student s = new Student(
+                            date[0].trim(),
+                            date[1].trim(),
+                            date[2].trim(),
+                            date[3].trim()
+                    );
+                    listaStudenti.add(s);
+                }
+            }
 
 
-                processedLines.add(modifiedLine);
+            Collections.sort(listaStudenti);
+
+
+            List<String> liniiDeSalvat = new ArrayList<>();
+            System.out.println("Studenți sortați (Grupă -> Nume):");
+            for (Student s : listaStudenti) {
+                String studentString = s.toString();
+                System.out.println(studentString);
+                liniiDeSalvat.add(studentString);
             }
 
 
             Path pathOut = Paths.get(fileNameOut);
-            Files.write(pathOut, processedLines);
+            Files.write(pathOut, liniiDeSalvat);
 
-
-            System.out.println("Rezultatul a fost salvat în: " + fileNameOut);
+            System.out.println("\nSucces! Rezultatul a fost salvat în: " + fileNameOut);
 
         } catch (IOException e) {
             System.err.println("Eroare la procesarea fișierelor: " + e.getMessage());
