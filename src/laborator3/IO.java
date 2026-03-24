@@ -1,6 +1,6 @@
 package laborator3;
 
-import laborator2.Student; // Importăm clasa Student din pachetul laborator2
+import laborator2.Student;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
