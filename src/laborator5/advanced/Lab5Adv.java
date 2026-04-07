@@ -8,7 +8,7 @@ public class Lab5Adv {
         int intResult = (Integer) intCalc.add(5)
                 .subtract(3)
                 .multiply(2)
-                .result(); // [cite: 275]
+                .result();
         System.out.println("5.5.2 a) Rezultat Integer: " + intResult);
 
 
