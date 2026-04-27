@@ -25,4 +25,9 @@ public class NewIntCalculator extends ACalculator {
         this.state = (Integer) this.state * value;
         return this;
     }
+
+    public NewIntCalculator divide(int value) {
+        this.state = (Integer) this.state / value;
+        return this;
+    }
 }

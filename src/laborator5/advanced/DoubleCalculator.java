@@ -25,4 +25,9 @@ public class DoubleCalculator extends ACalculator {
         this.state = (Double) this.state * value;
         return this;
     }
+
+    public DoubleCalculator divide(double value) {
+        this.state = (Double) this.state / value;
+        return this;
+    }
 }
