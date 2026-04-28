@@ -18,17 +18,16 @@ public class Student implements Comparable<Student> {
         this.nota = 0.0f;
     }
 
-
-    public String getNumarMatricol() {
-        return numarMatricol;
-    }
-
-    public void setNota(float nota) {
+    public Student(String numarMatricol, String prenume, String nume, String formatieDeStudiu, float nota) {
+        this.numarMatricol = numarMatricol;
+        this.prenume = prenume;
+        this.nume = nume;
+        this.formatieDeStudiu = formatieDeStudiu;
         this.nota = nota;
     }
 
-    public float getNota() {
-        return nota;
+    public String getNumarMatricol() {
+        return numarMatricol;
     }
 
     public String getPrenume() {
@@ -43,13 +42,22 @@ public class Student implements Comparable<Student> {
         return formatieDeStudiu;
     }
 
+    public float getNota() {
+        return nota;
+    }
+
+    public void setNota(float nota) {
+        this.nota = nota;
+    }
 
     @Override
     public int compareTo(Student altStudent) {
         int rezultatFormatie = this.formatieDeStudiu.compareTo(altStudent.formatieDeStudiu);
+
         if (rezultatFormatie == 0) {
             return this.nume.compareTo(altStudent.nume);
         }
+
         return rezultatFormatie;
     }
 
@@ -57,20 +65,18 @@ public class Student implements Comparable<Student> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
 
+        Student student = (Student) o;
         return Objects.equals(numarMatricol, student.numarMatricol);
     }
 
     @Override
     public int hashCode() {
-
         return Objects.hash(numarMatricol);
     }
 
     @Override
     public String toString() {
-
         return numarMatricol + ", " + prenume + ", " + nume + ", " + formatieDeStudiu + ", Nota: " + nota;
     }
 }
